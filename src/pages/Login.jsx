@@ -1,42 +1,74 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import style from "../css/Login.module.css";
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import { validateAccessUsers } from '../services/api';
+import { Outlet, useNavigate } from "react-router-dom";
+import { validateAccessUsers } from "../services/api";
+import Swal from 'sweetalert2'
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  useEffect(() => {
+   sessionStorage.clear(); 
+  })
+
   const validateUser = async (username, password) => {
-    const validateUse = await validateAccessUsers(username, password);
-    console.log(validateUse.image)
-    sessionStorage.setItem('image', validateUse.image)
-    return validateUse
-  }
+    const data = {
+      username: username,
+      password: password,
+      expiresInMins: 30,
+    };
+
+    await fetch("https://dummyjson.com/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if(data.message !== 'Invalid credentials') {
+          console.log('data')
+          console.log(data)
+          sessionStorage.setItem("image", data.image);
+          sessionStorage.setItem("token", data.accessToken);
+          navigate("/posts");
+        }else {
+          Swal.fire({
+            title: "Error",
+            text: "Credenciales invalidas",
+            icon: "error"
+          });
+          sessionStorage.setItem("token", '');
+        }
+      })
+      .catch(() => {
+        Swal.fire({
+          title: "Error",
+          text: "Credenciales invalidas",
+          icon: "error"
+        });
+        return;
+      })
+    /*
+    const validateUse = await validateAccessUsers(username, password)
+      .then(() => {
+        console.log("validateUse");
+        console.log(validateUse);
+      })
+      .catch(() => {
+        console.log("error al obtener e tolen");
+        sessionStorage.setItem("token", "");
+      });
+    return validateUse;
+    */
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();
     validateUser(username, password);
-
-    navigate("/posts");
-
-    /*
-    if (username === validUsername && password === validPassword) {
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "Bienvenido",
-        showConfirmButton: false,
-        timer: 500,
-      });
-      setError("");
-    } else {
-      setError("Usuario o contraseña incorrectos");
-    }
-      */
   };
 
   return (
@@ -64,12 +96,12 @@ const Login = () => {
               required
             />
           </div>
-          {error && <p className={style.error}>{error}</p>}
           <button type="submit" className={style.loginButton}>
             Iniciar Sesión
           </button>
         </form>
       </div>
+      <Outlet />
     </div>
   );
 };

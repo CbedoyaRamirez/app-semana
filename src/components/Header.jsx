@@ -7,8 +7,8 @@ const Header = (image) => {
     <header className={style.header}>
       <nav className={style.navMenu}>
         <a href="login" className={style.navLinkLogo}><Login image={image.image} /></a>
-        <a href="#posts" className={style.navLink}>Post</a>
-        <a href="#listUser" className={style.navLink}>Listado Usuario</a>
+        <a href="posts" className={style.navLink}>Post</a>
+        <a href="listUser" className={style.navLink}>Listado Usuario</a>
       </nav>
     </header>
   );
