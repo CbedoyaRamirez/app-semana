@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import style from "../css/User.module.css";
+import Header from "./Header";
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
+  const [image, setImage] = useState('');
 
   useEffect(() => {
     fetch("https://dummyjson.com/users")
@@ -11,10 +13,12 @@ const UserList = () => {
         setUsers(data.users || []);
       })
       .catch((error) => console.error(error));
+      setImage(sessionStorage.getItem('image'))
   }, []);
 
   return (
     <>
+    <Header image={image} />
       <h2>Usuarios</h2>
       <div className={style.container}>
         {Array.isArray(users) &&
