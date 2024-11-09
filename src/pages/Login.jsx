@@ -34,7 +34,7 @@ const Login = () => {
           console.log(data)
           sessionStorage.setItem("image", data.image);
           sessionStorage.setItem("token", data.accessToken);
-          navigate("/posts");
+          navigate("/app-semana/posts");
         }else {
           Swal.fire({
             title: "Error",

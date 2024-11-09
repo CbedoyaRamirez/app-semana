@@ -1,28 +1,36 @@
-import "./App.css";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { createHashRouter, Navigate, RouterProvider } from "react-router-dom";
+import Login from "./pages/Login";
+import PrivateRoute from "./router/privateRouter";
 import PostList from "./components/PostList";
 import ListUSer from "./pages/UserDashboard";
-import PrivateRoute from "./router/privateRouter";
-import Login from "./pages/Login";
+
+const router = createHashRouter([
+  {
+    path: "/app-semana/login",
+    element: <Login />,
+  },
+  {
+    path: "/app-semana",
+    element: <PrivateRoute />,
+    children: [
+      {
+        path: "/app-semana/posts",
+        element: <PostList />,
+      },
+      {
+        path: "/app-semana/listuser",
+        element: <ListUSer />,
+      },
+    ],
+  },
+  {
+    path: "*",
+    element: <Navigate to="/app-semana/login" replace />,
+  },
+]);
 
 function App() {
-  return (
-    <BrowserRouter
-      future={{
-        v7_relativeSplatPath: true,
-        v7_startTransition: true
-      }}
-    >
-      <Routes>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/" element={<PrivateRoute />}>
-          <Route path="/posts" element={<PostList />}></Route>
-          <Route path="/listuser" element={<ListUSer />}></Route>
-        </Route>
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </BrowserRouter>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
