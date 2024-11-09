@@ -16,7 +16,7 @@ const StarRating = ({ totalStars = 5 }) => {
   useEffect(() => {
     isExploding && setTimeout(() => {
         setIsExploding(false);
-    }, 3000);
+    }, 4000);
   }, [isExploding])
 
   return (
@@ -42,7 +42,7 @@ const Star = ({ selected = false, onClick }) => (
     onClick={onClick}
     style={{
       cursor: "pointer",
-      color: selected ? "#FFD700" : "#e4e5e9",
+      color: selected ? "#FFE6A6" : "#e4e5e9",
       fontSize: "34px",
     }}
   >

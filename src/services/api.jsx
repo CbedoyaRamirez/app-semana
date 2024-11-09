@@ -1,6 +1,8 @@
 import axios from 'axios';
 
 const API_URL = 'https://dummyapi.online/api';  
+const API_URLUSER = 'https://dummyjson.com/users';  
+const API_ACCESSUSER = 'https://dummyjson.com/auth/login';  
 
 
 export const getPosts = async () => {
@@ -13,32 +15,24 @@ export const getPosts = async () => {
   }
 };
 
-// Obtener un post específico
-export const getPost = async (postId) => {
-  try {
-    const response = await axios.get(`${API_URL}/posts/${postId}`);
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching post', error);
-    return null;
-  }
-};
 
-// Obtener los comentarios de un post
-export const getComments = async (postId) => {
+export const getUsers = async () => {
   try {
-    const response = await axios.get(`${API_URL}/comments/${postId}`);
+    const response = await axios.get(`${API_URLUSER}`);
     return response.data;
   } catch (error) {
-    console.error('Error fetching comments', error);
+    console.error('Error fetching users', error);
     return [];
   }
 };
 
-// Obtener usuarios
-export const getUsers = async () => {
+export const validateAccessUsers = async (user, pass) => {
   try {
-    const response = await axios.get(`${API_URL}/users`);
+    const response = await axios.post(`${API_ACCESSUSER}`,{
+      username: user,
+      password: pass,
+      expiresInMins: 30,
+    });
     return response.data;
   } catch (error) {
     console.error('Error fetching users', error);

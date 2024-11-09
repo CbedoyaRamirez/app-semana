@@ -4,6 +4,7 @@ import "./index.css";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import Login from "./pages/Login.jsx";
 import PostList from "./components/PostList.jsx";
+import ListUSer from "./pages/UserDashboard.jsx";
 
 const router = createHashRouter([
   {
@@ -13,6 +14,10 @@ const router = createHashRouter([
   {
     path: "/posts",
     element: <PostList />,
+  },
+  {
+    path: "/listUser",
+    element: <ListUSer />,
   },
 ]);
 

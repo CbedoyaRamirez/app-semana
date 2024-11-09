@@ -1,18 +1,10 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-// src/components/Post.js
-import { useState, useEffect } from "react";
-import { getPost, getComments } from "../services/api";
-import { useNavigate } from "react-router-dom";
-//import { useHistory } from 'react-router-dom';
+import { useState } from "react";
 import sytle from "../css/PostList.module.css";
 import Modal from "./Modal";
 import StarRating from "./StarRating";
 
 const Post = ({ post }) => {
-  const [comments, setComments] = useState([]);
-  const navigate = useNavigate();
-  //const history = useHistory();
   const [isModalOpen, setIsModalOpen] = useState(false); // Estado para manejar la visibilidad de la Modal
 
   const openModal = () => {
@@ -23,13 +15,6 @@ const Post = ({ post }) => {
     setIsModalOpen(false); // Cierra la modal
   };
 
-  useEffect(() => {
-    const fetchComments = async () => {
-      const commentsData = await getComments(post.id);
-      setComments(commentsData);
-    };
-    fetchComments();
-  }, [post.id]);
 
   const goToPostDetails = () => {
     //history.push(`/post/${post.id}`);
