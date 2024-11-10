@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getPosts } from "../services/api";
 import Post from "./Post";
-import sytle from "../css/PostList.module.css";
+import style from "../css/PostList.module.css";
 import Header from "./Header";
 
 const PostList = () => {
@@ -26,15 +26,15 @@ const PostList = () => {
   );
 
   return (
-    <div className={sytle.containerInitial}>
+    <div className={style.containerInitial}>
       {loadding && <h2>Cargando...</h2>}
-      <h1 className={sytle.titlePage}>Listado de productos</h1>
-      <div className={sytle.containerFilter}>
-        <input className={sytle.containerFilterInput} 
+      <h1 className={style.titlePage}>Listado de productos</h1>
+      <div className={style.containerFilter}>
+        <input className={style.containerFilterInput} 
         onChange={(e) => setSearchTerm(e.target.value)}
         placeholder="buscar productos" />
       </div>
-      <div className={sytle.containerProducts}>
+      <div className={style.containerProducts}>
         {filteredProducts.map((post) => (
           <Post key={post.id} post={post} />
         ))}

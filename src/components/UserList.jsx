@@ -5,6 +5,7 @@ import Header from "./Header";
 const UserList = () => {
   const [users, setUsers] = useState([]);
   const [image, setImage] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     fetch("https://dummyjson.com/users")
@@ -16,14 +17,23 @@ const UserList = () => {
     setImage(sessionStorage.getItem("image"));
   }, []);
 
+  const filteredUser = users.filter((product) =>
+    product.firstName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <>
       <div className={style.containerTitle}>
         <h2>Usuarios</h2>
       </div>
+      <div className={style.containerFilter}>
+        <input className={style.containerFilterInput} 
+        onChange={(e) => setSearchTerm(e.target.value)}
+        placeholder="buscar usuario" />
+      </div>
       <div className={style.container}>
         {Array.isArray(users) &&
-          users.map((user) => (
+          filteredUser.map((user) => (
             <div key={user.id} className={style.item}>
               <img src={user.image} alt={user.image} />
               <p className={style.detail}>
