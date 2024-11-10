@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import style from "../css/Starts.module.css";
-import ConfettiExplosion from "react-confetti-explosion";
 import Confetti from "react-confetti";
 
 const StarRating = ({ totalStars = 5 }) => {

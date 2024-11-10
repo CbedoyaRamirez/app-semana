@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import style from "../css/Login.module.css";
 import { Outlet, useNavigate } from "react-router-dom";
-import { validateAccessUsers } from "../services/api";
 import Swal from "sweetalert2";
 
 const Login = () => {
@@ -53,18 +52,6 @@ const Login = () => {
         });
         return;
       });
-    /*
-    const validateUse = await validateAccessUsers(username, password)
-      .then(() => {
-        console.log("validateUse");
-        console.log(validateUse);
-      })
-      .catch(() => {
-        console.log("error al obtener e tolen");
-        sessionStorage.setItem("token", "");
-      });
-    return validateUse;
-    */
   };
 
   const handleLogin = (e) => {
