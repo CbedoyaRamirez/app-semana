@@ -18,7 +18,6 @@ const UserList = () => {
 
   return (
     <>
-      <Header image={image} />
       <div className={style.containerTitle}>
         <h2>Usuarios</h2>
       </div>

@@ -7,12 +7,12 @@
     background-color: #F3F4F5;
 }
 
-.container {
+.containerProducts {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
     gap: 10px;
-    width: 100%;
+    width: 80%;
 }
 
 .containerFilter {
@@ -88,32 +88,80 @@
     cursor: pointer;
 }
 
+@media (min-width: 200px) and (max-width: 320px) {
+    .containerInitial {
+        width: 100%;
+        background-color: #F3F4F5;
+    }
+    .containerProducts {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 10px;
+        width: 100%;
+    }
+}
+
 @media (min-width: 320px) and (max-width: 480px) {
     .containerInitial {
         width: 100%;
         background-color: #F3F4F5;
     }
-    .container {
+    .containerProducts {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
         grid-template-rows: repeat(3, 1fr);
         gap: 10px;
         width: 100%;
+    }
+    .item {
+        width: 57%;
+        height: 200px;
+        background-color: #C3B6FE;
+        border: 2px solid #000;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.55);
+        -webkit-box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.55);
+        -moz-box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.55);
     }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
-    .container {
+    .containerProducts {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
         grid-template-rows: repeat(3, 1fr);
         gap: 10px;
         width: 100%;
     }
+    .item {
+        width: 85%;
+        height: 200px;
+        background-color: #C3B6FE;
+        border: 2px solid #000;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.55);
+        -webkit-box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.55);
+        -moz-box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.55);
+    }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-    .container {
+    .containerProducts {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
         grid-template-rows: repeat(3, 1fr);
@@ -123,9 +171,9 @@
 }
 
 @media (min-width: 1025px) and (max-width: 1200px) {
-    .container {
+    .containerProducts {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(1, 1fr);
         grid-template-rows: repeat(3, 1fr);
         gap: 10px;
         width: 100%;
@@ -133,7 +181,7 @@
 }
 
 @media (min-width: 1201px) {
-    .container {
+    .containerProducts {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(3, 1fr);

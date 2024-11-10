@@ -27,7 +27,6 @@ const PostList = () => {
 
   return (
     <div className={sytle.containerInitial}>
-      <Header image={image} />
       {loadding && <h2>Cargando...</h2>}
       <h1 className={sytle.titlePage}>Listado de productos</h1>
       <div className={sytle.containerFilter}>
@@ -35,7 +34,7 @@ const PostList = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
         placeholder="buscar productos" />
       </div>
-      <div className={sytle.container}>
+      <div className={sytle.containerProducts}>
         {filteredProducts.map((post) => (
           <Post key={post.id} post={post} />
         ))}
