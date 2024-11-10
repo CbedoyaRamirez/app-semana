@@ -8,6 +8,9 @@
     align-items: center;
     background-color: #333;
     color: white;
+    box-shadow: -3px 14px 12px 0px rgba(0,0,0,0.28);
+    -webkit-box-shadow: -3px 14px 12px 0px rgba(0,0,0,0.28);
+    -moz-box-shadow: -3px 14px 12px 0px rgba(0,0,0,0.28);
 }
 
 .logo {

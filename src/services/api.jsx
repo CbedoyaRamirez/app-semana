@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-const API_URL = 'https://dummyapi.online/api';  
-const API_URLUSER = 'https://dummyjson.com/users';  
+const API_URL = 'https://fakestoreapi.com/products';  
+const API_URLUSER = 'https://api.escuelajs.co/api/v1/users';  
 const API_ACCESSUSER = 'https://dummyjson.com/auth/login';  
 
 
 export const getPosts = async () => {
   try {
-    const response = await axios.get(`${API_URL}/movies`);
+    const response = await axios.get(`${API_URL}`);
     return response.data;
   } catch (error) {
     console.error('Error fetching posts', error);

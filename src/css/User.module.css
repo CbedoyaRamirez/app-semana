@@ -1,3 +1,9 @@
+.containerTitle {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -12,6 +18,9 @@
     border: 2px solid #000;
     border-radius: 10px;
     background-color: #D3DEFE;
+    box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.55);
+-webkit-box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.55);
+-moz-box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.55);
 }
 
 .item:hover {
@@ -22,4 +31,54 @@
     font-size: 1.2rem;
     color: #000;
     text-align: center;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .container {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 10px;
+        width: 100%;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .container {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 10px;
+        width: 100%;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 10px;
+        width: 100%;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1200px) {
+    .container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 10px;
+        width: 100%;
+    }
+}
+
+@media (min-width: 1201px) {
+    .container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 10px;
+        width: 100%;
+    }
 }

@@ -2,16 +2,17 @@ import { useEffect, useState } from "react";
 import style from "../css/Login.module.css";
 import { Outlet, useNavigate } from "react-router-dom";
 import { validateAccessUsers } from "../services/api";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [viewPassword, setViewPassword] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-   sessionStorage.clear(); 
-  })
+    sessionStorage.clear();
+  });
 
   const validateUser = async (username, password) => {
     const data = {
@@ -29,29 +30,29 @@ const Login = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        if(data.message !== 'Invalid credentials') {
-          console.log('data')
-          console.log(data)
+        if (data.message !== "Invalid credentials") {
+          console.log("data");
+          console.log(data);
           sessionStorage.setItem("image", data.image);
           sessionStorage.setItem("token", data.accessToken);
           navigate("/app-semana/posts");
-        }else {
+        } else {
           Swal.fire({
             title: "Error",
             text: "Credenciales invalidas",
-            icon: "error"
+            icon: "error",
           });
-          sessionStorage.setItem("token", '');
+          sessionStorage.setItem("token", "");
         }
       })
       .catch(() => {
         Swal.fire({
           title: "Error",
           text: "Credenciales invalidas",
-          icon: "error"
+          icon: "error",
         });
         return;
-      })
+      });
     /*
     const validateUse = await validateAccessUsers(username, password)
       .then(() => {
@@ -71,6 +72,10 @@ const Login = () => {
     validateUser(username, password);
   };
 
+  const viewPass = () => {
+    setViewPassword(!viewPassword)
+  }
+
   return (
     <div className={style.loginContainerItems}>
       <div className={style.loginContainer}>
@@ -89,13 +94,17 @@ const Login = () => {
           <div className={style.formGroup}>
             <label htmlFor="password">Contraseña:</label>
             <input
-              type="password"
+              type={viewPassword ? 'text' : 'password' }
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
+          <label htmlFor="">
+            <input type="checkbox" onClick={() => viewPass()}  />
+            Mostrar contraseña
+          </label>
           <button type="submit" className={style.loginButton}>
             Iniciar Sesión
           </button>
